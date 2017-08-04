@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 import java.awt.*;
+//imports
 
 public class Chessboard
 {
@@ -45,6 +46,35 @@ public class Chessboard
    public void addQueen(int x, int y)//take the position for the queen
    {
       queenLocations.add(new Point(x, y));//add the position into the list of queen locations
+   }
+   
+   public boolean checkBoard()//this method will check the board and see if it is a valid solution
+   {
+      boolean solved = true;//assume it is solved, this will change if a conflict is found
+      
+      for(int i = 0; i <= queenLocations.size() - 1; i++)//iterate through the whole list of queens
+      {
+         Point queenI = new Point((int)queenLocations.get(i).getX(), (int)queenLocations.get(i).getY());//store the queen to be checked from the first list
+         for(int j = 0; j <= queenLocations.size() - 1; j++)//iterate through the list of queens for each queen, aka check them all against each other
+         {
+            Point queenJ = new Point((int)queenLocations.get(j).getX(), (int)queenLocations.get(j).getY());//store the queen to be checked from the second list
+            
+            if(!(   (queenI.getX() != queenJ.getX()) &&
+                  (queenI.getY() != queenJ.getY()) &&
+                  (  (queenI.getX() - queenJ.getY()) != (queenJ.getX() - queenI.getY())) &&
+                  (  (queenI.getX() - queenI.getY()) != (queenJ.getX() - queenJ.getY()))
+               ))//math to check whether the 2 queens are in the same row/column/diagonal, if they are in the same one, then the if is true
+            {
+               solved = false;//set solved to false so we know we can stop
+               break;//break the loop
+            }
+         }
+         if(solved == false)//if we know its not solved
+         {
+            break;//break the loop
+         }
+      }
+      return solved;//return whether its solved or not
    }
    
    public String toString()//tostring method for printing the board

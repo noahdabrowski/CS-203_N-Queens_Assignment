@@ -71,6 +71,21 @@ public class Chessboard
       }
    }
    
+   public void swapQueens(Point queenOne, Point queenTwo)//method to swap two queens to make the algorithms shorter
+   {
+      int indexOne = queenLocations.indexOf(queenOne);//get the index for the first queen
+      int indexTwo = queenLocations.indexOf(queenTwo);//get the index for the second queen
+      
+      int queenColumnOne = (int)queenOne.getY();//get the first points column value
+      int queenColumnTwo = (int)queenTwo.getY();//get the second points column value
+         
+      queenOne.setLocation(queenOne.getX(), queenColumnTwo);//swap the column for the point
+      queenTwo.setLocation(queenTwo.getX(), queenColumnOne);//swap the column for the point
+         
+      queenLocations.set(indexOne, queenOne);//put the new point back in the board
+      queenLocations.set(indexTwo, queenTwo);//put the new point back in the board
+   }
+   
    public boolean checkBoard()//this method will check the board and see if it is a valid solution
    {
       boolean solved = true;//assume it is solved, this will change if a conflict is found

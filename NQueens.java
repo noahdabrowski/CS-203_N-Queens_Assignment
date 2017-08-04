@@ -1,5 +1,4 @@
-import java.io.*;
-import java.util.*;
+//none yet
 //imports
 
 public class NQueens

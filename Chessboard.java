@@ -48,6 +48,27 @@ public class Chessboard
       queenLocations.add(new Point(x, y));//add the position into the list of queen locations
    }
    
+   public void placeQueens()//determine the random placement of the queens for a given run of an algorithm
+   {
+      int n = (int)Math.sqrt(chessboard.size());//int n because its the n-queens problem, the board is n by n squares
+      
+      ArrayList<Integer> possibleColumns = new ArrayList<Integer>();//make an arraylist of integers to represent the possible columns
+      
+      for(int initial = 1; initial <= n; initial++)//populate the arraylist with all the possible columns
+      {
+         possibleColumns.add(initial);//add the column to the list
+      }
+      
+      Random randomizer = new Random();//make the randomizer to pick random columns for each row
+      
+      for(int i = 1; i <= n; i++)//for each row in the board
+      {
+         Integer randomColumn = possibleColumns.get(randomizer.nextInt(possibleColumns.size()));//generate the random column from the list of available columns
+         addQueen(i, randomColumn);//add a queen at the current row and the random column
+         possibleColumns.remove(randomColumn);//remove the value for the column used so it doesnt get used again
+      }
+   }
+   
    public boolean checkBoard()//this method will check the board and see if it is a valid solution
    {
       boolean solved = true;//assume it is solved, this will change if a conflict is found

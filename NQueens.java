@@ -11,6 +11,6 @@ public class NQueens
       
       System.out.println("Puzzle solve time: " + algo.getTime());
    
-      System.out.print(chessboard.toString());
+      System.out.print(algo.chessboard.toString());
    }
 }

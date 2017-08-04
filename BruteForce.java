@@ -44,8 +44,29 @@ public class BruteForce
             }
          }
          
-         
-         //put algo logic here, make sure that you make sure the point to swap isnt in the solved list
+         for(int i = 0; i <= testboard.queenLocations.size() - 1; i++)
+         {
+            Point queenOne = testboard.queenLocations.get(i);
+            for(int j = 0; j <= testboard.queenLocations.size() - 1; j++)
+            {
+               Point queenTwo = testboard.queenLocations.get(j);
+               for(int k = 0; k <= solvedQueens.size() - 1; k++)
+               {
+                  if(!((queenOne.equals(solvedQueens.get(k))) || (queenTwo.equals(solvedQueens.get(k)))))
+                  {
+                     testboard.swapQueens(queenOne, queenTwo);
+                     if(testboard.checkQueen(queenOne))
+                     {
+                        solvedQueens.add(queenOne);
+                     }
+                     if(testboard.checkQueen(queenTwo))
+                     {
+                        solvedQueens.add(queenTwo);
+                     }
+                  }
+               }
+            }
+         }
          
          
          

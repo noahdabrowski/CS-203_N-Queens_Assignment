@@ -7,9 +7,9 @@ public class NQueens
    {
       Chessboard chessboard = new Chessboard(8);
       
-      //BruteForce algo = new BruteForce(chessboard);
+      BruteForce algo = new BruteForce(chessboard);
       
-      //System.out.println("Puzzle solve time: " + algo.getTime());
+      System.out.println("Puzzle solve time: " + algo.getTime());
    
       System.out.print(chessboard.toString());
    }

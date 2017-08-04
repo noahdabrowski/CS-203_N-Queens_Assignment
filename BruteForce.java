@@ -26,29 +26,26 @@ public class BruteForce
       
       boolean solved = false;//assume not solved
       
+      ArrayList<Point> solvedQueens = new ArrayList<Point>();
+      solvedQueens.add(new Point(-1,-1));//add a placeholder point so that the for loop will run. it shouldnt affect anything though
+      
       while(!solved)//while the board is not solved
       {
          for(int i = 0; i <= testboard.queenLocations.size() - 1; i++)
          {
-            Point queenOne = testboard.queenLocations.get(i);
-            for(int j = 0; j <= testboard.queenLocations.size() - 1; j++)
+            Point queen = testboard.queenLocations.get(i);
+            boolean valid = testboard.checkQueen(queen);
+            for(int j = 0; j <= solvedQueens.size() - 1; j++)
             {
-               Point queenTwo = testboard.queenLocations.get(j);
-               
-               testboard.swapQueens(queenOne, queenTwo);
-               
-               solved = testboard.checkBoard();
-               
-               if(solved)
+               if((valid) && (!(queen.equals(solvedQueens.get(j)))))
                {
-                  break;
+                  solvedQueens.add(queen);
                }
             }
-            if(solved)
-            {
-               break;
-            }
          }
+         
+         
+         //put algo logic here, make sure that you make sure the point to swap isnt in the solved list
          
          
          

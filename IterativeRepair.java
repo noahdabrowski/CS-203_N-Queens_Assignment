@@ -3,18 +3,18 @@ import java.io.*;
 import java.awt.*;
 //imports
 
-public class BruteForce
+public class IterativeRepair
 {
    Chessboard chessboard;
    long time;
    
-   public BruteForce(Chessboard chessboard)
+   public IterativeRepair(Chessboard chessboard)
    {
       chessboard = this.chessboard;
       time = 0;
    }
    
-   public void bruteSolve()
+   public void iterativeSolve()
    {
       
    }

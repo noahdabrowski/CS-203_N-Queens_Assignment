@@ -8,10 +8,6 @@ public class NQueens
    {
       Chessboard chessboard = new Chessboard(8);
       
-      chessboard.placeQueens();
-      
       System.out.print(chessboard.toString());
-      
-      System.out.println(chessboard.checkBoard());
    }
 }

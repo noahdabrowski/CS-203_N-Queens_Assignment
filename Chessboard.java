@@ -20,6 +20,8 @@ public class Chessboard
             chessboard.add(new Point(i, j));//add a point at the current position in the arraylist
          }
       }
+      
+      placeQueens();
    }//once the constructor is done, you will have an empty default 4 by 4 chessboard
    
    public Chessboard(int n)//constructor that will take the n value from the user to make an n by n board
@@ -36,6 +38,8 @@ public class Chessboard
                chessboard.add(new Point(i, j));//add a point at the current position
             }
          }
+         
+         placeQueens();
       }
       else
       {

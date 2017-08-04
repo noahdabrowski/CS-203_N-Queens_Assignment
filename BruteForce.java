@@ -31,22 +31,31 @@ public class BruteForce
       int n = testboard.queenLocations.size();
       testboard.queenLocations.clear();//clear the original config? kinda conflicts with my earlier code. but dont feel like changing it all
       
+      Point rand1 = new Point(-1, -1);
+      Point previous = new Point(-1, -1);
+      
       while(!solved)//while the board is not solved
       {
          if(stuck)
          {
             Random randomizer = new Random();
-            Point rand1 = testboard.queenLocations.get(randomizer.nextInt(testboard.queenLocations.size()));
-            Point rand2 = testboard.queenLocations.get(randomizer.nextInt(testboard.queenLocations.size()));
+            rand1 = testboard.queenLocations.get(randomizer.nextInt(testboard.queenLocations.size()));
             
-            testboard.swapQueens(rand1, rand2);
-            
-            if((!(testboard.checkQueen(rand1))) || (!(testboard.checkQueen(rand2))))
+            if(!(rand1.equals(previous)))
             {
-               testboard.swapQueens(rand2, rand1);
+               testboard.queenLocations.remove(rand1);
+               
+               rand1 = testboard.queenLocations.get(randomizer.nextInt(testboard.queenLocations.size()));
+            
+               if(!(rand1.equals(previous)))
+               {
+                  testboard.queenLocations.remove(rand1);
+               }
             }
             
-            System.out.println(testboard.toString());
+            
+            
+            //System.out.println(testboard.toString());
             stuck = false;
          }
          for(int i = 1; i <= n; i++)
@@ -55,12 +64,13 @@ public class BruteForce
             {
                Point current = new Point(i, j);
                boolean valid = testboard.checkQueen(current);
-               if(valid)
+               if((valid) && (!(current.equals(rand1))))
                {
                   testboard.queenLocations.add(current);
-                  System.out.println(testboard.toString());
+                  //System.out.println(testboard.toString());
+                  previous = current;
                }
-            }
+            }//check the row/column/diag to see if theres a queen before iterating
          }
          solved = testboard.checkBoard();
          if(!solved)

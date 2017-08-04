@@ -26,51 +26,47 @@ public class BruteForce
       
       boolean solved = false;//assume not solved
       
-      ArrayList<Point> solvedQueens = new ArrayList<Point>();
-      solvedQueens.add(new Point(-1,-1));//add a placeholder point so that the for loop will run. it shouldnt affect anything though
+      boolean stuck = false;//assume not stuck
+      
+      int n = testboard.queenLocations.size();
+      testboard.queenLocations.clear();//clear the original config? kinda conflicts with my earlier code. but dont feel like changing it all
       
       while(!solved)//while the board is not solved
       {
-         for(int i = 0; i <= testboard.queenLocations.size() - 1; i++)
+         if(stuck)
          {
-            Point queen = testboard.queenLocations.get(i);
-            boolean valid = testboard.checkQueen(queen);
-            for(int j = 0; j <= solvedQueens.size() - 1; j++)
+            Random randomizer = new Random();
+            Point rand1 = testboard.queenLocations.get(randomizer.nextInt(testboard.queenLocations.size()));
+            Point rand2 = testboard.queenLocations.get(randomizer.nextInt(testboard.queenLocations.size()));
+            
+            testboard.swapQueens(rand1, rand2);
+            
+            if((!(testboard.checkQueen(rand1))) || (!(testboard.checkQueen(rand2))))
             {
-               if((valid) && (!(queen.equals(solvedQueens.get(j)))))
+               testboard.swapQueens(rand2, rand1);
+            }
+            
+            System.out.println(testboard.toString());
+            stuck = false;
+         }
+         for(int i = 1; i <= n; i++)
+         {
+            for(int j = 1; j <= n; j++)
+            {
+               Point current = new Point(i, j);
+               boolean valid = testboard.checkQueen(current);
+               if(valid)
                {
-                  solvedQueens.add(queen);
+                  testboard.queenLocations.add(current);
+                  System.out.println(testboard.toString());
                }
             }
          }
-         
-         for(int i = 0; i <= testboard.queenLocations.size() - 1; i++)
+         solved = testboard.checkBoard();
+         if(!solved)
          {
-            Point queenOne = testboard.queenLocations.get(i);
-            for(int j = 0; j <= testboard.queenLocations.size() - 1; j++)
-            {
-               Point queenTwo = testboard.queenLocations.get(j);
-               for(int k = 0; k <= solvedQueens.size() - 1; k++)
-               {
-                  if(!((queenOne.equals(solvedQueens.get(k))) || (queenTwo.equals(solvedQueens.get(k)))))
-                  {
-                     testboard.swapQueens(queenOne, queenTwo);
-                     if(testboard.checkQueen(queenOne))
-                     {
-                        solvedQueens.add(queenOne);
-                     }
-                     if(testboard.checkQueen(queenTwo))
-                     {
-                        solvedQueens.add(queenTwo);
-                     }
-                  }
-               }
-            }
+            stuck = true;
          }
-         
-         
-         
-         
          count++;
          System.out.println("while loop has run " + count + " times!");//for testing
       }
@@ -92,5 +88,15 @@ public class BruteForce
    public long getTime()//method to easily get the time after an algorithm run
    {
       return time;//get the time
+   }
+   
+   public void setChessboard(Chessboard chessboard)//method to set the chessboard
+   {
+      chessboard = this.chessboard;//set the chessboard
+   }
+   
+   public Chessboard getChessboard()//method to get the chessboard
+   {
+      return chessboard;//get the chessboard
    }
 }

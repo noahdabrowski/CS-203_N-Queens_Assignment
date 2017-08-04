@@ -10,10 +10,10 @@ public class BruteForce
    
    public BruteForce(Chessboard chessboard)//constructor for the bruteforce algorithm
    {
-      chessboard = this.chessboard;//give the object a chessboard
+      this.chessboard = chessboard;//give the object a chessboard
       time = 0;//set time to inital 0
-      //Chessboard testboard = chessboard;
-      time = bruteSolve(chessboard);//solve the chessboard and set the time for the object to be the runtime
+      Chessboard testboard = chessboard;
+      time = bruteSolve(testboard);//solve the chessboard and set the time for the object to be the runtime
    }
    
    public long bruteSolve(Chessboard chessboard)//main algorithm method to solve the chessboard
@@ -24,8 +24,31 @@ public class BruteForce
       
       int count = 0;//for testing
       
-      while(!testboard.checkBoard())//while the board is not solved
+      boolean solved = false;//assume not solved
+      
+      while(!solved)//while the board is not solved
       {
+         for(int i = 0; i <= testboard.queenLocations.size() - 1; i++)
+         {
+            Point queenOne = testboard.queenLocations.get(i);
+            for(int j = 0; j <= testboard.queenLocations.size() - 1; j++)
+            {
+               Point queenTwo = testboard.queenLocations.get(j);
+               
+               testboard.swapQueens(queenOne, queenTwo);
+               
+               solved = testboard.checkBoard();
+               
+               if(solved)
+               {
+                  break;
+               }
+            }
+            if(solved)
+            {
+               break;
+            }
+         }
          
          
          

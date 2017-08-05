@@ -30,8 +30,8 @@ public class NQueens//main class
       }
       else if(args[0].equalsIgnoreCase("Iterative") && start)//if they select iterative repair and everything is ok
       {
-         //IterativeRepair algoIterative = new IterativeRepair(chessboard);//make the iterative repair object(this also solves the puzzle in itself)
-         //System.out.println("Puzzle solve time: " + algoIterative.getTime() + " nanoseconds");//print out the solve time
+         IterativeRepair algoIterative = new IterativeRepair(chessboard);//make the iterative repair object(this also solves the puzzle in itself)
+         System.out.println("Puzzle solve time: " + algoIterative.getTime() + " nanoseconds");//print out the solve time
          System.out.print(chessboard.toString());//print the board
       }
    }

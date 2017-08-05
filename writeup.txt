@@ -1,0 +1,5 @@
+My brute force algorithm is probably 2 theta(n^2), since I technically swap twice per each swap and i do the swap, and the algorithm increases exponentially with size
+My iterative repair is probably theta(n), if it worked properly
+
+my brute force ran for approximately 4641451.3 nanoseconds per run, based on 10 runs.
+my iterative repair never finished, sorry

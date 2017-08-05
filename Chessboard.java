@@ -138,6 +138,24 @@ public class Chessboard
       return valid;//return whether its a valid placement or not
    }
    
+   public int checkQueenAttackers(Point queenToCheck)//this method will check a queen to see how many attackers it has
+   {
+      int queensAttacking = 0;//this will count how many queens are attacking the queen to be checked
+      for(int i = 0; i <= queenLocations.size() - 1; i++)
+      {
+         Point queenI = new Point((int)queenLocations.get(i).getX(), (int)queenLocations.get(i).getY());//store the queen to be checked from the list of queens
+         if(!(   (queenToCheck.getX() != queenI.getX()) &&
+                  (queenToCheck.getY() != queenI.getY()) &&
+                  (  (queenToCheck.getX() - queenI.getY()) != (queenI.getX() - queenToCheck.getY())) &&
+                  (  (queenToCheck.getX() - queenToCheck.getY()) != (queenI.getX() - queenI.getY()))
+               ))//math to check whether the 2 queens are in the same row/column/diagonal, if they are in the same one, then the if is true
+         {
+            queensAttacking++;//increment the queens attacking
+         }
+      }
+      return queensAttacking;//return the number of queens attacking this queen
+   }
+   
    public String toString()//tostring method for printing the board
    {
       int n = (int)Math.sqrt(chessboard.size());//int n because its the n-queens problem, the board is n by n squares

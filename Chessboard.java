@@ -97,14 +97,17 @@ public class Chessboard
          {
             Point queenJ = new Point((int)queenLocations.get(j).getX(), (int)queenLocations.get(j).getY());//store the queen to be checked from the second list
             
-            if(!(   (queenI.getX() != queenJ.getX()) &&
+            if(!(queenI.equals(queenJ)))
+            {
+               if(!(   (queenI.getX() != queenJ.getX()) &&
                   (queenI.getY() != queenJ.getY()) &&
                   (  (queenI.getX() - queenJ.getY()) != (queenJ.getX() - queenI.getY())) &&
                   (  (queenI.getX() - queenI.getY()) != (queenJ.getX() - queenJ.getY()))
                ))//math to check whether the 2 queens are in the same row/column/diagonal, if they are in the same one, then the if is true
-            {
-               solved = false;//set solved to false so we know we can stop
-               break;//break the loop
+               {
+                  solved = false;//set solved to false so we know we can stop
+                  break;//break the loop
+               }
             }
          }
          if(solved == false)//if we know its not solved

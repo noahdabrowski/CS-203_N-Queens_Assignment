@@ -20,7 +20,6 @@ public class Chessboard
             chessboard.add(new Point(i, j));//add a point at the current position in the arraylist
          }
       }
-      
       placeQueens();
    }//once the constructor is done, you will have an empty default 4 by 4 chessboard
    
@@ -38,7 +37,6 @@ public class Chessboard
                chessboard.add(new Point(i, j));//add a point at the current position
             }
          }
-         
          placeQueens();
       }
       else
@@ -73,6 +71,21 @@ public class Chessboard
       }
    }
    
+   public void swapQueens(Point queenOne, Point queenTwo)//method to swap two queens to make the algorithms shorter
+   {
+      int indexOne = queenLocations.indexOf(queenOne);//get the index for the first queen
+      int indexTwo = queenLocations.indexOf(queenTwo);//get the index for the second queen
+      
+      int queenColumnOne = (int)queenOne.getY();//get the first points column value
+      int queenColumnTwo = (int)queenTwo.getY();//get the second points column value
+         
+      queenOne.setLocation(queenOne.getX(), queenColumnTwo);//swap the column for the point
+      queenTwo.setLocation(queenTwo.getX(), queenColumnOne);//swap the column for the point
+         
+      queenLocations.set(indexOne, queenOne);//put the new point back in the board
+      queenLocations.set(indexTwo, queenTwo);//put the new point back in the board
+   }
+   
    public boolean checkBoard()//this method will check the board and see if it is a valid solution
    {
       boolean solved = true;//assume it is solved, this will change if a conflict is found
@@ -84,14 +97,17 @@ public class Chessboard
          {
             Point queenJ = new Point((int)queenLocations.get(j).getX(), (int)queenLocations.get(j).getY());//store the queen to be checked from the second list
             
-            if(!(   (queenI.getX() != queenJ.getX()) &&
+            if(!(queenI.equals(queenJ)))
+            {
+               if(!(   (queenI.getX() != queenJ.getX()) &&
                   (queenI.getY() != queenJ.getY()) &&
                   (  (queenI.getX() - queenJ.getY()) != (queenJ.getX() - queenI.getY())) &&
                   (  (queenI.getX() - queenI.getY()) != (queenJ.getX() - queenJ.getY()))
                ))//math to check whether the 2 queens are in the same row/column/diagonal, if they are in the same one, then the if is true
-            {
-               solved = false;//set solved to false so we know we can stop
-               break;//break the loop
+               {
+                  solved = false;//set solved to false so we know we can stop
+                  break;//break the loop
+               }
             }
          }
          if(solved == false)//if we know its not solved
@@ -100,6 +116,26 @@ public class Chessboard
          }
       }
       return solved;//return whether its solved or not
+   }
+   
+   public boolean checkQueen(Point queenToCheck)//this method will check a queen to see if it is a valid placement
+   {
+      boolean valid = true;//assume it is valid, this will change if a conflict is found
+      
+      for(int i = 0; i <= queenLocations.size() - 1; i++)
+      {
+         Point queenI = new Point((int)queenLocations.get(i).getX(), (int)queenLocations.get(i).getY());//store the queen to be checked from the list of queens
+         if(!(   (queenToCheck.getX() != queenI.getX()) &&
+                  (queenToCheck.getY() != queenI.getY()) &&
+                  (  (queenToCheck.getX() - queenI.getY()) != (queenI.getX() - queenToCheck.getY())) &&
+                  (  (queenToCheck.getX() - queenToCheck.getY()) != (queenI.getX() - queenI.getY()))
+               ))//math to check whether the 2 queens are in the same row/column/diagonal, if they are in the same one, then the if is true
+         {
+            valid = false;//set solved to false so we know we can stop
+            break;//break the loop
+         }
+      }
+      return valid;//return whether its a valid placement or not
    }
    
    public String toString()//tostring method for printing the board

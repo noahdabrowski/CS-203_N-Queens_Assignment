@@ -8,11 +8,12 @@ public class BruteForce
    Chessboard chessboard;//needs a chessboard
    long time;//time
    
-   public BruteForce(Chessboard chessboard)//constructor for an instance of the brute force algorithm
+   public BruteForce(Chessboard chessboard)//constructor for the bruteforce algorithm
    {
-      chessboard = chessboard;//have to give it a chessboard to start with
-      time = 0;//set time to 0
-      bruteSolve(chessboard);
+      this.chessboard = chessboard;//give the object a chessboard
+      time = 0;//set time to inital 0
+      //Chessboard testboard = chessboard;
+      time = bruteSolve(chessboard);//solve the chessboard and set the time for the object to be the runtime
    }
    
    public long bruteSolve(Chessboard chessboard)//main algorithm

@@ -1,6 +1,6 @@
-import java.util.*;
-import java.io.*;
-import java.awt.*;
+import java.util.*;//just in case
+import java.io.*;//just in case
+import java.awt.*;//for the point class
 //imports
 
 public class BruteForce
@@ -22,7 +22,7 @@ public class BruteForce
       
       Chessboard testBoard = chessboard;//make a new chessboard out of the old one
       
-      int count = 0;//for testing/seeing how many times it runs
+      //int count = 0;//for testing/seeing how many times it runs
       
       while(!testBoard.checkBoard())//while the board is not solved
       {
@@ -43,9 +43,8 @@ public class BruteForce
          testBoard.queenLocations.set(randomIndexOne, queenOne);//put the new point back in the board
          testBoard.queenLocations.set(randomIndexTwo, queenTwo);//put the new point back in the board
          
-         count++;//for testing
-         System.out.println("while loop has run " + count + " times!");//for testing
-         
+         //count++;//for testing
+         //System.out.println("while loop has run " + count + " times!");//for testing
       }
       
       long endTime = System.nanoTime();//stop the timer(kinda)

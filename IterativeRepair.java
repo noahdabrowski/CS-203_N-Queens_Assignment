@@ -1,6 +1,6 @@
-import java.util.*;
-import java.io.*;
-import java.awt.*;
+import java.util.*;//just in case
+import java.io.*;//just in case
+import java.awt.*;//for the point class
 //imports
 
 public class IterativeRepair
@@ -33,9 +33,6 @@ public class IterativeRepair
          count++;
          System.out.println("while loop has run " + count + " times!");//for testing
       }
-   
-      
-      
       
       long endTime = System.nanoTime();//stop the timer(kinda)
       long totalTimeEstimate = endTime - startTime;//figure out total time

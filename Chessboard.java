@@ -1,6 +1,6 @@
-import java.util.*;
-import java.io.*;
-import java.awt.*;
+import java.util.*;//just in case
+import java.io.*;//just in case
+import java.awt.*;//for the point class
 //imports
 
 public class Chessboard
@@ -20,7 +20,7 @@ public class Chessboard
             chessboard.add(new Point(i, j));//add a point at the current position in the arraylist
          }
       }
-      placeQueens();
+      placeQueens();//generate the random configuration
    }//once the constructor is done, you will have an empty default 4 by 4 chessboard
    
    public Chessboard(int n)//constructor that will take the n value from the user to make an n by n board
@@ -37,7 +37,7 @@ public class Chessboard
                chessboard.add(new Point(i, j));//add a point at the current position
             }
          }
-         placeQueens();
+         placeQueens();//generate the random configuration of queens
       }
       else
       {
@@ -97,7 +97,7 @@ public class Chessboard
          {
             Point queenJ = new Point((int)queenLocations.get(j).getX(), (int)queenLocations.get(j).getY());//store the queen to be checked from the second list
             
-            if(!(queenI.equals(queenJ)))
+            if(!(queenI.equals(queenJ)))//only check for queens that arent the same(since we are checking the list against itself)
             {
                if(!(   (queenI.getX() != queenJ.getX()) &&
                   (queenI.getY() != queenJ.getY()) &&
@@ -131,7 +131,7 @@ public class Chessboard
                   (  (queenToCheck.getX() - queenToCheck.getY()) != (queenI.getX() - queenI.getY()))
                ))//math to check whether the 2 queens are in the same row/column/diagonal, if they are in the same one, then the if is true
          {
-            valid = false;//set solved to false so we know we can stop
+            valid = false;//set valid to false so we know we can stop
             break;//break the loop
          }
       }
